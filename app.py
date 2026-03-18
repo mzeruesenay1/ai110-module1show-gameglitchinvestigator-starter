@@ -1,13 +1,15 @@
 import random
 import streamlit as st
 
+# FIX: Corrected difficulty ranges so Hard has the widest range (1-200) and most
+# attempts, Easy has the narrowest (1-20). Identified the illogical scaling with Claude.
 def get_range_for_difficulty(difficulty: str):
     if difficulty == "Easy":
         return 1, 20
     if difficulty == "Normal":
         return 1, 100
     if difficulty == "Hard":
-        return 1, 50
+        return 1, 200
     return 1, 100
 
 
@@ -28,16 +30,17 @@ def parse_guess(raw: str):
 
     return True, value, None
 
-
+# FIX: Swapped the "Too High" and "Too Low" messages which were reversed in the
+# original code. Claude flagged this by reading the conditional logic in check_guess.
 def check_guess(guess, secret):
     if guess == secret:
         return "Win", "🎉 Correct!"
 
     try:
         if guess > secret:
-            return "Too High", "📈 Go HIGHER!"
+            return "Too High", "📉 Go LOWER!"
         else:
-            return "Too Low", "📉 Go LOWER!"
+            return "Too Low", "📈 Go HIGHER!"
     except TypeError:
         g = str(guess)
         if g == secret:
