@@ -26,12 +26,15 @@ It wrote the code, ran away, and now the game is unplayable.
 ## 📝 Document Your Experience
 
 - [ ] Describe the game's purpose.
+It's a number guessing game where you try to guess a secret number within a limited number of attempts, getting higher/lower hints along the way.
 - [ ] Detail which bugs you found.
+The Higher/Lower hints were backwards, and the difficulty levels had illogical ranges where Hard was actually easier than Normal.
 - [ ] Explain what fixes you applied.
+I swapped the hint messages in check_guess to point the right way, and corrected the ranges and in get_range_for_difficulty so difficulty scales properly.
 
 ## 📸 Demo
 
-- [ ] [Insert a screenshot of your fixed, winning game here]
+![Winning game screenshot](screenshot.png)
 
 ## 🚀 Stretch Features
 
